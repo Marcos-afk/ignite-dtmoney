@@ -26,7 +26,7 @@ export const Card = styled.div<BackgroundColorProps>`
   padding: 2rem;
 
 
-  & header {
+   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,7 +34,7 @@ export const Card = styled.div<BackgroundColorProps>`
   }
 
 
-  & strong {
+  strong {
     display: block;
     margin-top: 1rem;
     font-size: 2rem;

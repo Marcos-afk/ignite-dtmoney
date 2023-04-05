@@ -1,5 +1,6 @@
 import * as S from './styles';
 import { Header } from '@components/Header';
+import { SearchForm } from '@components/SearchForm';
 import { Summary } from '@components/Summary';
 
 export const Transactions = () => {
@@ -8,6 +9,7 @@ export const Transactions = () => {
       <Header />
       <Summary />
       <S.Container>
+        <SearchForm />
         <S.Table>
           <tbody>
             <tr>
