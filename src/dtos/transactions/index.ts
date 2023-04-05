@@ -4,5 +4,5 @@ export interface TransactionDTO {
   type: 'income' | 'outcome';
   category: string;
   price: number;
-  createdAt: Date;
+  createdAt: string;
 }

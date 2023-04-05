@@ -2,6 +2,7 @@ import { useTransactions } from '@hooks/useTransactions';
 import * as S from './styles';
 import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from 'phosphor-react';
 import { useTheme } from 'styled-components';
+import { currencyFormatter } from '@utils/formatter';
 
 export const Summary = () => {
   const { transactions } = useTransactions();
@@ -34,7 +35,7 @@ export const Summary = () => {
           <ArrowCircleUp size={32} color={theme['green-500']} />
         </header>
 
-        <strong>R${summary.income}</strong>
+        <strong>{currencyFormatter.format(summary.income)}</strong>
       </S.Card>
 
       <S.Card>
@@ -42,7 +43,7 @@ export const Summary = () => {
           <span>Saídas</span>
           <ArrowCircleDown size={32} color={theme['red-300']} />
         </header>
-        <strong>R${summary.outcome}</strong>
+        <strong>{currencyFormatter.format(summary.outcome)}</strong>
       </S.Card>
 
       <S.Card variant="green">
@@ -50,7 +51,7 @@ export const Summary = () => {
           <span>Total</span>
           <CurrencyDollar size={32} color={theme.white} />
         </header>
-        <strong>R${summary.total}</strong>
+        <strong>{currencyFormatter.format(summary.total)}</strong>
       </S.Card>
     </S.Container>
   );
