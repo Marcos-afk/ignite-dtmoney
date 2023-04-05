@@ -2,21 +2,10 @@ import * as S from './styles';
 import { Header } from '@components/Header';
 import { SearchForm } from '@components/SearchForm';
 import { Summary } from '@components/Summary';
-import { useEffect, useState } from 'react';
-import { api } from '@services/api';
-import { TransactionDTO } from '@dtos/transactions';
+import { useTransactions } from '@hooks/useTransactions';
 
 export const Transactions = () => {
-  const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
-
-  useEffect(() => {
-    const loadTransactions = async () => {
-      const { data } = await api.get('/transactions');
-      setTransactions(data);
-    };
-
-    loadTransactions();
-  }, []);
+  const { transactions } = useTransactions();
 
   return (
     <div>

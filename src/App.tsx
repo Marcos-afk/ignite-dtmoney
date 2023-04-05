@@ -1,3 +1,4 @@
+import { TransactionsProvider } from '@contexts/transactions';
 import { Transactions } from '@pages/Transactions';
 import { DEFAULT_THEME } from '@theme/default';
 import { GlobalStyle } from '@theme/global';
@@ -7,7 +8,9 @@ export const App = () => {
   return (
     <ThemeProvider theme={DEFAULT_THEME}>
       <GlobalStyle />
-      <Transactions />
+      <TransactionsProvider>
+        <Transactions />
+      </TransactionsProvider>
     </ThemeProvider>
   );
 };
