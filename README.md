@@ -1,22 +1,24 @@
-# Coffee Deliver
+# Ignite Dt Money
 
 <div align="center">
-	<img src="./src/assets/first-screen.png" width="800"alt="first-screen"/>
+	<img src="./src/assets/screen01.png" width="800"alt="first-screen"/>
+  <img src="./src/assets/screen02.png" width="800"alt="second-screen"/>
 </div>
 
 ## :dart: Objetivo
 
-Desafio 02 do conteúdo estudado nas aulas do Chapter II da trilha de React do
-Bootcamp Ignite da Rocketseat.
+Projeto de controle financeiro desenvolvido com o conteúdo estudado nas aulas do
+Chapter III da trilha de ReactJS do Bootcamp Ignite da Rocketseat.
 
 ## :hammer_and_wrench: Ferramentas
 
-- [@phosphor-icons/react](https://github.com/phosphor-icons/react)
-- [immer](https://github.com/immerjs/immer)
+- [axios](https://www.npmjs.com/package/axios)
+- [phosphor-react](https://www.npmjs.com/package/phosphor-react)
 - [react](https://pt-br.reactjs.org/)
 - [react-hook-form](https://react-hook-form.com/)
-- [react-router-dom](https://reactrouter.com/en/main)
+- [radix-ui](https://www.radix-ui.com/)
 - [styled-components](https://styled-components.com/)
+- [use-context-selector](https://www.npmjs.com/package/use-context-selector)
 - [typescript](https://www.typescriptlang.org/)
 - [zod](https://github.com/colinhacks/zod)
 
