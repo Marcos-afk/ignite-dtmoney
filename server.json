@@ -15,6 +15,22 @@
       "category": "Alimentação",
       "price": 50,
       "createdAt": "2022-07-29T19:30:44.505Z"
+    },
+    {
+      "description": "Desenvolvimento de app",
+      "price": 500,
+      "category": "Programação",
+      "type": "income",
+      "createdAt": "2023-04-06T17:46:12.606Z",
+      "id": 3
+    },
+    {
+      "description": "Compra de equipamentos de informática",
+      "price": 5000,
+      "category": "Informática",
+      "type": "outcome",
+      "createdAt": "2023-04-06T17:58:15.149Z",
+      "id": 4
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import {
+  CreateTransactionProps,
   TransactionsContextProps,
   TransactionsProviderProps,
 } from './TransactionsContextProps';
@@ -17,9 +18,19 @@ export const TransactionsProvider = ({
 
   const fetchTransactions = async (query?: string) => {
     const { data } = await api.get('/transactions', {
-      params: { q: query },
+      params: { q: query, _sort: 'createdAt', _order: 'desc' },
     });
+
     setTransactions(data);
+  };
+
+  const createTransaction = async (data: CreateTransactionProps) => {
+    const response = await api.post('/transactions', {
+      ...data,
+      createdAt: new Date(),
+    });
+
+    setTransactions((prevState) => [response.data, ...prevState]);
   };
 
   useEffect(() => {
@@ -27,7 +38,9 @@ export const TransactionsProvider = ({
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, fetchTransactions, createTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   );

@@ -8,8 +8,10 @@ import {
   NewTransactionFormSchema,
   defaultValues,
 } from './schemas';
+import { useTransactions } from '@hooks/useTransactions';
 
 export const NewTransactionModal = () => {
+  const { createTransaction } = useTransactions();
   const {
     register,
     handleSubmit,
@@ -22,9 +24,7 @@ export const NewTransactionModal = () => {
   });
 
   const handleAddNewTransaction = async (data: NewTransactionFormProps) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    // eslint-disable-next-line no-console
-    console.log(data);
+    await createTransaction(data);
     reset();
   };
 
