@@ -15,17 +15,19 @@ export const TransactionsProvider = ({
 }: TransactionsProviderProps) => {
   const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
 
-  useEffect(() => {
-    const loadTransactions = async () => {
-      const { data } = await api.get('/transactions');
-      setTransactions(data);
-    };
+  const fetchTransactions = async (query?: string) => {
+    const { data } = await api.get('/transactions', {
+      params: { q: query },
+    });
+    setTransactions(data);
+  };
 
-    loadTransactions();
+  useEffect(() => {
+    fetchTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
       {children}
     </TransactionsContext.Provider>
   );

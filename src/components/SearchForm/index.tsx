@@ -3,8 +3,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MagnifyingGlass } from 'phosphor-react';
 import { SearchFormProps, SearchFormSchema, defaultValues } from './schemas';
+import { useTransactions } from '@hooks/useTransactions';
 
 export const SearchForm = () => {
+  const { fetchTransactions } = useTransactions();
+
   const {
     register,
     handleSubmit,
@@ -16,9 +19,7 @@ export const SearchForm = () => {
   });
 
   const handleSearchTransactions = async (data: SearchFormProps) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    // eslint-disable-next-line no-console
-    console.log(data);
+    await fetchTransactions(data.query);
     reset();
   };
 
@@ -27,7 +28,7 @@ export const SearchForm = () => {
       <input
         type="text"
         placeholder="Busque por transações"
-        {...register('search')}
+        {...register('query')}
         autoComplete="off"
       />
       <button type="submit" disabled={isSubmitting}>
