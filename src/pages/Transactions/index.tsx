@@ -2,11 +2,19 @@ import * as S from './styles';
 import { Header } from '@components/Header';
 import { SearchForm } from '@components/SearchForm';
 import { Summary } from '@components/Summary';
-import { useTransactions } from '@hooks/useTransactions';
+import { TransactionsContext } from '@contexts/transactions';
 import { currencyFormatter, dateFormatter } from '@utils/formatter';
+import { useContextSelector } from 'use-context-selector';
 
 export const Transactions = () => {
-  const { transactions } = useTransactions();
+  const { transactions } = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return {
+        transactions: context.transactions,
+      };
+    },
+  );
 
   return (
     <div>

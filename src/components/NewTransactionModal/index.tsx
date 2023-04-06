@@ -8,10 +8,19 @@ import {
   NewTransactionFormSchema,
   defaultValues,
 } from './schemas';
-import { useTransactions } from '@hooks/useTransactions';
+import { useContextSelector } from 'use-context-selector';
+import { TransactionsContext } from '@contexts/transactions';
 
 export const NewTransactionModal = () => {
-  const { createTransaction } = useTransactions();
+  const { createTransaction } = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return {
+        createTransaction: context.createTransaction,
+      };
+    },
+  );
+
   const {
     register,
     handleSubmit,
