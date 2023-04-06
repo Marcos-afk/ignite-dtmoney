@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createContext } from 'use-context-selector';
 
 import {
@@ -18,26 +18,29 @@ export const TransactionsProvider = ({
 }: TransactionsProviderProps) => {
   const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
 
-  const fetchTransactions = async (query?: string) => {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const { data } = await api.get('/transactions', {
       params: { q: query, _sort: 'createdAt', _order: 'desc' },
     });
 
     setTransactions(data);
-  };
+  }, []);
 
-  const createTransaction = async (data: CreateTransactionProps) => {
-    const response = await api.post('/transactions', {
-      ...data,
-      createdAt: new Date(),
-    });
+  const createTransaction = useCallback(
+    async (data: CreateTransactionProps) => {
+      const response = await api.post('/transactions', {
+        ...data,
+        createdAt: new Date(),
+      });
 
-    setTransactions((prevState) => [response.data, ...prevState]);
-  };
+      setTransactions((prevState) => [response.data, ...prevState]);
+    },
+    [],
+  );
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [fetchTransactions]);
 
   return (
     <TransactionsContext.Provider
