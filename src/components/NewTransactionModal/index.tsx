@@ -1,7 +1,7 @@
 import * as S from './styles';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   NewTransactionFormProps,
@@ -14,6 +14,7 @@ export const NewTransactionModal = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { isSubmitting },
   } = useForm<NewTransactionFormProps>({
     defaultValues: defaultValues,
@@ -59,17 +60,27 @@ export const NewTransactionModal = () => {
             required
           />
 
-          <S.TransactionType>
-            <S.TransactionTypeButton variant="income" value="income">
-              Entradas
-              <ArrowCircleUp size={32} />
-            </S.TransactionTypeButton>
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => (
+              <S.TransactionType
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <S.TransactionTypeButton variant="income" value="income">
+                  Entradas
+                  <ArrowCircleUp size={32} />
+                </S.TransactionTypeButton>
 
-            <S.TransactionTypeButton variant="outcome" value="outcome">
-              Saídas
-              <ArrowCircleDown size={32} />
-            </S.TransactionTypeButton>
-          </S.TransactionType>
+                <S.TransactionTypeButton variant="outcome" value="outcome">
+                  Saídas
+                  <ArrowCircleDown size={32} />
+                </S.TransactionTypeButton>
+              </S.TransactionType>
+            )}
+          />
+
           <button type="submit" disabled={isSubmitting}>
             Cadastrar
           </button>
